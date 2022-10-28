@@ -11,18 +11,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../../../res/admin/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../res/admin/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../../res/admin/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../res/admin/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.
   -->
-  <link rel="stylesheet" href="../../../res/admin/dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="../../res/admin/dist/css/skins/skin-blue.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +58,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="../../../res/admin/index2.html" class="logo">
+    <a href="../../res/admin/index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -90,7 +90,7 @@ desired effect
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="../../../res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="../../res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -174,14 +174,14 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="../../../res/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="../../res/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="../../../res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="../../res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -231,7 +231,7 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../../../res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="../../res/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -256,8 +256,9 @@ desired effect
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/ecommerce/admin/users/"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li><a href="/ecommerce/admin/users/"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
+        <li><a href="/ecommerce/admin/categories"><i class="fa fa-link"></i> <span> Cetegorias </span></a></li>
+        <li><a href="/ecommerce/admin/products"><i class="fa fa-link"></i> <span> Produtos </span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -275,20 +276,16 @@ desired effect
     <!-- /.sidebar -->
   </aside>
 
--------------------------------------------------------------------------------------------------------------------------------------------
+
+<!-------------------------------------------------------------------------------------------------------------------------------->
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Lista de Usuários
+    Lista de Produtos
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="/admin/users">Usuários</a></li>
-    <li class="active"><a href="/admin/users/create">Cadastrar</a></li>
-  </ol>
 </section>
 
 <!-- Main content -->
@@ -296,43 +293,52 @@ desired effect
 
   <div class="row">
   	<div class="col-md-12">
-  		<div class="box box-success">
+  		<div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Novo Usuário</h3>
+          <h3 class="box-title">Editar Produto</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/ecommerce/admin/users/create" method="post">
+        <form role="form" action="/ecommerce/admin/products/<?php echo htmlspecialchars( $product["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post" enctype="multipart/form-data">
           <div class="box-body">
             <div class="form-group">
-              <label for="desperson">Nome</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome">
+              <label for="desproduct">Nome da produto</label>
+              <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome do produto" value="<?php echo htmlspecialchars( $product["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
             <div class="form-group">
-              <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login">
+              <label for="vlprice">Preço</label>
+              <input type="number" class="form-control" id="vlprice" name="vlprice" step="0.01" placeholder="0.00" value="<?php echo htmlspecialchars( $product["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
             <div class="form-group">
-              <label for="nrphone">Telefone</label>
-              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone">
+              <label for="vlwidth">Largura</label>
+              <input type="number" class="form-control" id="vlwidth" name="vlwidth" step="0.01" placeholder="0.00" value="<?php echo htmlspecialchars( $product["vlwidth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
             <div class="form-group">
-              <label for="desemail">E-mail</label>
-              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o e-mail">
+              <label for="vlheight">Altura</label>
+              <input type="number" class="form-control" id="vlheight" name="vlheight" step="0.01" placeholder="0.00" value="<?php echo htmlspecialchars( $product["vlheight"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
             <div class="form-group">
-              <label for="despassword">Senha</label>
-              <input type="password" class="form-control" id="despassword" name="despassword" placeholder="Digite a senha">
+              <label for="vllength">Comprimento</label>
+              <input type="number" class="form-control" id="vllength" name="vllength" step="0.01" placeholder="0.00" value="<?php echo htmlspecialchars( $product["vllength"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="inadmin" value="1"> Acesso de Administrador
-              </label>
+            <div class="form-group">
+              <label for="vlweight">Peso</label>
+              <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00" value="<?php echo htmlspecialchars( $product["vlweight"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
+            <div class="form-group">
+              <label for="file">Foto</label>
+              <input type="file" class="form-control" id="file" name="file" value="<?php echo htmlspecialchars( $product["vlweight"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <div class="box box-widget">
+                <div class="box-body">
+                  <img class="img-responsive" id="image-preview" src="<?php echo htmlspecialchars( $product["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Photo">
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-success">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
           </div>
         </form>
       </div>
@@ -343,8 +349,23 @@ desired effect
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+document.querySelector('#file').addEventListener('change', function(){
+  
+  var file = new FileReader();
 
---------------------------------------------------------------------------------------------------------------------------------------------
+  file.onload = function() {
+    
+    document.querySelector('#image-preview').src = file.result;
+
+  }
+
+  file.readAsDataURL(this.files[0]);
+
+});
+</script>
+
+<!-------------------------------------------------------------------------------------------------------------------------------->
 
  <!-- Main Footer -->
   <footer class="main-footer">
@@ -438,11 +459,11 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.2.3 -->
-<script src="../../../res/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../../res/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../../../res/admin/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../res/admin/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../../res/admin/dist/js/app.min.js"></script>
+<script src="../../res/admin/dist/js/app.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

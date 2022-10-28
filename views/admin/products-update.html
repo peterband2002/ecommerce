@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
+<!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -258,6 +258,7 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         <li><a href="/ecommerce/admin/users/"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
         <li><a href="/ecommerce/admin/categories"><i class="fa fa-link"></i> <span> Cetegorias </span></a></li>
+        <li><a href="/ecommerce/admin/products"><i class="fa fa-link"></i> <span> Produtos </span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -276,14 +277,14 @@ desired effect
   </aside>
 
 
-------------------------------------------------------------------------------------------------------------------------------------
+<!-------------------------------------------------------------------------------------------------------------------------------->
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Lista de Categorias
+    Lista de Produtos
   </h1>
 </section>
 
@@ -294,16 +295,46 @@ desired effect
   	<div class="col-md-12">
   		<div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Editar Categoria</h3>
+          <h3 class="box-title">Editar Produto</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/ecommerce/admin/categories/<?php echo htmlspecialchars( $category["idcategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+        <form role="form" action="/ecommerce/admin/products/{$product.idproduct}" method="post" enctype="multipart/form-data">
           <div class="box-body">
             <div class="form-group">
-              <label for="descategory">Nome da categoria</label>
-              <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome da categoria" value="<?php echo htmlspecialchars( $category["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+              <label for="desproduct">Nome da produto</label>
+              <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome do produto" value="{$product.desproduct}">
             </div>
+            <div class="form-group">
+              <label for="vlprice">Preço</label>
+              <input type="number" class="form-control" id="vlprice" name="vlprice" step="0.01" placeholder="0.00" value="{$product.vlprice}">
+            </div>
+            <div class="form-group">
+              <label for="vlwidth">Largura</label>
+              <input type="number" class="form-control" id="vlwidth" name="vlwidth" step="0.01" placeholder="0.00" value="{$product.vlwidth}">
+            </div>
+            <div class="form-group">
+              <label for="vlheight">Altura</label>
+              <input type="number" class="form-control" id="vlheight" name="vlheight" step="0.01" placeholder="0.00" value="{$product.vlheight}">
+            </div>
+            <div class="form-group">
+              <label for="vllength">Comprimento</label>
+              <input type="number" class="form-control" id="vllength" name="vllength" step="0.01" placeholder="0.00" value="{$product.vllength}">
+            </div>
+            <div class="form-group">
+              <label for="vlweight">Peso</label>
+              <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00" value="{$product.vlweight}">
+            </div>
+            <div class="form-group">
+              <label for="file">Foto</label>
+              <input type="file" class="form-control" id="file" name="file" value="{$product.vlweight}">
+              <div class="box box-widget">
+                <div class="box-body">
+                  <img class="img-responsive" id="image-preview" src="{$product.desphoto}" alt="Photo">
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
@@ -318,8 +349,23 @@ desired effect
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+document.querySelector('#file').addEventListener('change', function(){
+  
+  var file = new FileReader();
 
------------------------------------------------------------------------------------------------------------------------------------
+  file.onload = function() {
+    
+    document.querySelector('#image-preview').src = file.result;
+
+  }
+
+  file.readAsDataURL(this.files[0]);
+
+});
+</script>
+
+<!-------------------------------------------------------------------------------------------------------------------------------->
 
  <!-- Main Footer -->
   <footer class="main-footer">
