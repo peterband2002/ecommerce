@@ -1,5 +1,6 @@
 <?php
 
+use \Hcode\Page;
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 use \Hcode\Model\Category;
@@ -20,7 +21,7 @@ $app->get("/admin/categories", function() {
 
 });
 
-$app->get("/admin/categories/create", function() {
+$app->get("/admin/categories/create/", function() {
 
 	User::verifyLogin();
 

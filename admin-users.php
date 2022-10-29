@@ -4,18 +4,13 @@ use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 
 // Lista os usuários cadastrados
-$app->get('/admin/users/', function() {
+$app->get('/admin/users', function() {
 
 	User::verifyLogin();
 
 	$users = User::listAll();
 
-	$page = new PageAdmin([
-
-		"header"=>false,
-		"footer"=>false
-
-	]);
+	$page = new PageAdmin();
 
 	$page->setTpl("users", array(
 
