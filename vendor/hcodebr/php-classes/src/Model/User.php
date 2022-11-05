@@ -298,12 +298,14 @@ and date_add(a.dtregister, interval 1 hour) >= now()", array(
 	}
 
 	public static function setError($msg) {
+
 		$_SESSION[User::ERROR] = $msg;
+
 	}
 
 	public static function getError() {
 
-		$msg = (isset($_SESSION[User::ERROR])) ? $_SESSION[User::ERROR] : '';
+		$msg = (isset($_SESSION[User::ERROR]) && $_SESSION[User::ERROR]) ? $_SESSION[User::ERROR] : '';
 
 		User::clearError();
 
@@ -317,9 +319,25 @@ and date_add(a.dtregister, interval 1 hour) >= now()", array(
 
 	}
 
-	public static function setErrorRegister() {
+	public static function setErrorRegister($msg) {
 
 		$_SESSION[User::ERROR_REGISTER] = $msg;
+
+	}
+
+	public static function getErrorRegister() {
+
+		$msg = (isset($_SESSION[User::ERROR_REGISTER]) && $_SESSION[User::ERROR_REGISTER]) ? $_SESSION[User::ERROR_REGISTER] : '';
+
+		User::clearErrorRegister();
+
+		return $msg;
+
+	}
+
+	public static function clearErrorRegister() {
+
+		$_SESSION[User::ERROR_REGISTER] = NULL;
 
 	}
 
